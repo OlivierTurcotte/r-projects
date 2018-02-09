@@ -20,5 +20,3 @@ stopLoss <- function(d, density.exp){
 stopLoss(2,dbinom(4,0.5))
 stopLoss(20,dnbinom(5,0.5))
 
-
-
