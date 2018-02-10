@@ -69,3 +69,57 @@ o <- sum(1/lambda^2)/n^2
 plot(Vectorize(fx),0,1000)
 curve(dnorm(x,µ,sqrt(o)),0,1000,add = T, col = "red")
 
+
+# 2.3.3 ----
+
+# Initialisation
+mu <- log(10) - 0.18
+sd <- 0.6
+be_exp <- 1/10
+al_ga <- 2
+be_ga <- 1/5
+m <- 1000000
+set.seed(20160419)
+U <- runif(3*m)
+kappa <- c(0.001, 0.01, 0.1, 0.5, 0.9, 0.99, 0.999)
+
+x1 <- sapply(seq(1,3*m,3),function(i) qlnorm(U[i],mu,sd))
+x2 <- sapply(seq(2,3*m,3),function(i) qexp(U[i],be_exp))
+x3 <- sapply(seq(3,3*m,3),function(i) qgamma(U[i],al_ga,be_ga))
+S <- x1 + x2 + x3
+
+
+# e)
+e_x1 <- mean(x1)
+e_x2 <- mean(x2)
+e_x3 <- mean(x3)
+
+v_x1 <- mean(x1^2)-e_x1^2
+v_x2 <- mean(x2^2)-e_x2^2
+v_x3 <- mean(x3^2)-e_x3^2
+
+s_x1 <- sort(x1)
+s_x2 <- sort(x2)
+s_x3 <- sort(x3)
+
+
+VaR_x1 <- s_x1[m*kappa]
+VaR_x2 <- s_x2[m*kappa]
+VaR_x3 <- s_x3[m*kappa]
+
+TVaR_x1 <- sapply(seq(kappa),function(i) mean(s_x1[s_x1 > VaR_x1[i]]))
+TVaR_x2 <- sapply(seq(kappa),function(i) mean(s_x2[s_x2 > VaR_x2[i]]))
+TVaR_x3 <- sapply(seq(kappa),function(i) mean(s_x3[s_x3 > VaR_x3[i]]))
+
+# f)
+
+sorted_S <- sort(S)
+esperance_S <- mean(S)
+variance_S <- mean(S^2)-esperance_S^2
+VaR_S <- sorted_S[m*kappa]
+TVaR_S <- sapply(seq(kappa), function(i) mean(sorted_S[sorted_S > VaR_S[i]]))
+
+# g)
+
+BM1 <- VaR_x1+VaR_x2+VaR_x3-VaR_S
+BM2 <- TVaR_x1+TVaR_x2+TVaR_x3-TVaR_S
