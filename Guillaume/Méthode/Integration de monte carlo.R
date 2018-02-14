@@ -18,7 +18,16 @@ monte_carlo <- function(n)
 monte_carlo(1e7) ## seems legit
 
 ###-----------------------------------Numero 3------------------------------------
+## u = exp(-x/2) du = -1/2 exp(-x/2)dx  ca devient  -2*ln(u)^2
+rm(list=ls())
+monte_carlo <- function(n)
+{
+  u <- runif(n)
+  mean(2*(-log(u^2))^2 * sin(pi*(-1*log(u^2))))
+}
+monte_carlo(1e8)
 
+  
 
 
 

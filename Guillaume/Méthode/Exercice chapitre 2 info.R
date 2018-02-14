@@ -18,7 +18,6 @@ plot(x,y)
 ## d)
 u1 <- runif(200)
 u2 <- runif(200)
-donne<-
 hist(donne,prob=T)
 curve(dnorm,add=T)
 donne2 <- outer(u1,u2,function(x,y) (-2*log(x))^(1/2) * sin(2*pi*y))
