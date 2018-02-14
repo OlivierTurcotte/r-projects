@@ -30,7 +30,7 @@ x$variance  <- M$variance*B$esperance^2 + B$variance*M$esperance
 
 no_b <- 1-sapply(seq(0,1000,100),Fx)
 no_c <- sapply(seq(0,1000,100),StopLoss)
-no_d <- no_c/no_b-(no_b-1)
+no_d <- no_c/no_b+100*0:10
 no_e <- sapply(sapply(seq(0,1000,100),Fx),function(i) ETronque(100*i))
 no_f <- sapply(kappa,function(k) ifelse(k <= Fx(0),0,uniroot(function(x) Fx(x)-k,c(0,10000) )$root))
 no_g <- sapply(seq(kappa),function(i) StopLoss(no_f[i])/(1-kappa[i])+no_f[i])
@@ -55,7 +55,7 @@ ETronque_s <- function(d) sum(B_s[B_s>d])/n
 no_a2 <- c(mean(B_s),mean(B_s^2)-mean(B_s)^2)
 no_b2 <- 1-sapply(seq(0,1000,100),function(i) ecdf(B_s)(i))
 no_c2 <- sapply(seq(0,1000,100),StopLoss_s)
-no_d2 <- no_c2/no_b2-(no_b2-1)
+no_d2 <- no_c2/no_b2+100*0:10
 no_e2 <- sapply(no_b2,function(i) ETronque_s(100*(-i+1)))
 no_f2 <- quantile(B_s,kappa)
 no_g2 <- sapply(seq(kappa),function(i) StopLoss_s(no_f2[i])/(1-kappa[i])+no_f2[i])

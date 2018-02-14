@@ -28,7 +28,7 @@ lambda*a/b^2+(a/b)^2*lambda
 sapply(seq(0,1000,100),StopLossX)
 
 # d)
-sapply(seq(0,10),function(i) 1/(1-Fx(100*i))*StopLossX(100*i)+Fx(100*i))
+sapply(seq(0,10),function(i) 1/(1-Fx(100*i))*StopLossX(100*i)+100*i)
 
 # e)
 sapply(0:10,function(i) ETronque(100*Fx(100*i)))
@@ -56,7 +56,7 @@ mean(B^2) - mean(B)^2
 
 # b2)
 f <- sapply(0:10,function(k) mean(B>100*k))
-
+f
 # équivalent mais plus lent. 
 1-sapply(0:10,function(k) ecdf(B)(100*k))
 
@@ -65,7 +65,7 @@ f <- sapply(0:10,function(k) mean(B>100*k))
 s <- sapply(0:10,function(k) sum(B[B>100*k]-100*k)/n)
 
 # d2)
-s/f-(f+1)
+s/f+100*0:10
 
 # e2)
 
