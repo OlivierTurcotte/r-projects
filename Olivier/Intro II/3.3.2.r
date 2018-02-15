@@ -22,13 +22,15 @@ lambda*a/b
 lambda*a/b^2+(a/b)^2*lambda
 
 # b)
-1- sapply(seq(0,1000,100),Fx)
+no_b <- 1- sapply(seq(0,1000,100),Fx)
 
 # c)
-sapply(seq(0,1000,100),StopLossX)
+no_c <- sapply(seq(0,1000,100),StopLossX)
 
 # d)
 sapply(seq(0,10),function(i) 1/(1-Fx(100*i))*StopLossX(100*i)+100*i)
+# ou bien
+no_c/no_b+100*0:10
 
 # e)
 sapply(0:10,function(i) ETronque(100*Fx(100*i)))
