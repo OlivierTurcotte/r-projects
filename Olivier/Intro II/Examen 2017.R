@@ -90,3 +90,10 @@ x2 <- q3(u[3])
 # TEST QUI PROUVE QUE MA QUANTILE EST BONNE ET PAS LA TIENNE TABARNAK DE CALICE
 # FUCK YOU, 45 MINUTES À CHERCHER LE PROBLÈME QUAND C'EST TOÉ LE PROBLÈME !
 
+
+# Question 4 ----
+VaR <- function(k) 300*sqrt((k-0.95)/0.05)
+VaR(0.999999)
+# Pour le reste, c'est pas mal tout du traditionnel
+
+# Question 5 ----

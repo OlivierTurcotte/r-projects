@@ -54,10 +54,11 @@ for(i in seq(n)){
 }
 # a2)
 mean(B)
-mean(B^2) - mean(B)^2
+var(B)
 
 # b2)
 f <- sapply(0:10,function(k) mean(B>100*k))
+1-ecdf(B)(100*0:10)
 f
 # équivalent mais plus lent. 
 1-sapply(0:10,function(k) ecdf(B)(100*k))
