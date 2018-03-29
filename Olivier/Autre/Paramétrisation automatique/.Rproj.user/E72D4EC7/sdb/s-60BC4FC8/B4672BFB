@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Dépannage 03-15-18\n# Auteur: Deniz Alic\n\n#### 3.2.6 ####\nrm(list=ls())\n\nmu <- -0.5\nsd <- 1\n\n# Méthode 1\nset.seed(20160419)\nm <- 1000000\n\nV <- matrix(runif(2*m), nrow=m, byrow=T)\nV[c(1,2,m), ]\n\ntheta <- qlnorm(V[, 1], mu, sd)\nM <- qpois(V[, 2], 2*theta)\n\n# Méthode 2 \nset.seed(20160419)\n\nU <- runif(2*m)\nM <- sapply(1:m, function(t) qpois(U[2*t], 2 * qlnorm(U[2*t - 1], mu, sd)))\n\nmax(M)\n\nkk <- 0:max(M)\n\nfmx <- sapply(kk, function(t) mean(M == t))\nsum(fmx)\n\ndata.frame(kk[1:10], fmx[1:10])\nem_test <- sum(kk * fmx)\n\nem_sim <- mean(M)\nvam_sim <- var(M)\n\net <- exp(mu + sd^2 / 2)\nvat <- exp(2*mu + sd^2) *(exp(sd^2) - 1)\n\nem <- 2*et\nvam <- 2*et + 4*vat\n\nem_sim ; em ; em_test\nvam_sim ; vam\n\n#### 4.4.1 ####\nrm(list=ls())\n\nmu <- 2\nsd <- 0.9\nal <- 2\nbe <- 18\n\neb <- exp(mu + sd^2 / 2)\nvab <- exp(2*mu + sd^2) *(exp(sd^2) - 1)\n\net <- al / (al + be)\nvat <- al * be / (al + be)^2 / (al + be + 1)\n\nei <- et\nvai <- et - et^2\n\nex <- eb * et\nvax <- et * vab + eb^2 * (et - vat - et^2) + eb^2 * vat\n\ncov_x1x2 <- eb^2 * vat\n\n# Simulation\nm <- 100000\nset.seed(2^31 - 1)\nTT <- rbeta(m, al, be)\nI <- rbinom(m, 1, TT)\nX <- I * rlnorm(m, mu, sd)\nX2 <- rbinom(m, 1, TT) * rlnorm(m, mu, sd)\n\ndata.frame(ei, vai, ex, vax)\ndata.frame(mean(I), var(I), mean(X), var(X))\ncov_x1x2 ; cov(X, X2)\n",
+    "created" : 1521731195454.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1335189255",
+    "id" : "B4672BFB",
+    "lastKnownWriteTime" : 1521731042,
+    "last_content_update" : 1521731042,
+    "path" : "~/Actuariat/Première année/Session 2/Intro II/Code/act-2001/depannages/03-15-18.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
