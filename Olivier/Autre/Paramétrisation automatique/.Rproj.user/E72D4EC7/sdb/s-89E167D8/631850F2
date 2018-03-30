@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "## 5.2.2 - Olivier Turcotte \n\nrm(list = ls())\n## Parameters ----\np_pareto <- c(a =18/8, l =100*(18/8-1))\np_gamma <- c(a =100^2/300^2, b =100/300^2)\np_ln <- c(u = log(100)-log(10)/2, sd =sqrt(log(10)))\n\n## Simulation ----\nlibrary(actuar)\n\nset.seed(2018)\nm <- 100000\nV <- matrix(0,ncol = 4,nrow = m)\nfor(i in seq_len(m)){\n    u <- runif(1)\n    V[i,1] <- qpareto(u,p_pareto[\"a\"],p_pareto[\"l\"])\n    V[i,2] <- qgamma(u,p_gamma[\"a\"],p_gamma[\"b\"])\n    V[i,3] <- qlnorm(u,p_ln[\"u\"],p_ln[\"sd\"])\n}\nV[,4] <- apply(V,1,sum) ## Somme des X\n\n\nmean(V[,1]) ; mean(V[,2]) ; mean(V[,3]) ## Vérification paramètres\n\n\n## (a) ----\n\n## \nkappa <- c(0.9,0.99)\n(VaR_S <- quantile(V[,4],kappa,type = 1))\nc <- sapply(1:3,function(i) sort(V[,i])[m*kappa])\n\n(sum(c[1,]) == VaR_S[1])[[1]]\n(sum(c[2,]) == VaR_S[2])[[1]]## Vérificaion ok.\n\n## (b) ----\n(TVaR_S <- sapply(VaR_S,function(x) mean(V[,4][V[,4] > x])))\nc0.9 <- sapply(1:3,function(i) mean(V[,i][V[,4] > VaR_S[1]]))\nc0.99 <- sapply(1:3,function(i) mean(V[,i][V[,4] > VaR_S[2]]))\ndata.frame(TVaR_S[1], c0.9,TVaR_S[2],c0.99)\n",
+    "created" : 1522442652334.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3140197693",
+    "id" : "631850F2",
+    "lastKnownWriteTime" : 1522444677,
+    "last_content_update" : 1522444677956,
+    "path" : "~/Actuariat/Première année/Session 2/r-projects/Olivier/Intro II/CH05/5.2.2.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
