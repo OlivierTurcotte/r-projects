@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list=ls())\nn <- 100000\nS <- numeric(n)\nM <- numeric(0)\nset.seed(20180403)\n\nfor(i in seq_len(n))\n{\n    M[i] <- qpois(runif(1),10)\n    if(M[i] > 0)\n    {\n        temp <- numeric(0)\n        for(j in 1:M[i])\n        {\n            p <- runif(1)\n            if( p < 1/10)\n            {\n                temp[j] <- sum(qlnorm(runif(1),2,0.9))\n            }\n            else if ( p >= 1/10 && p<4/10)\n            {\n                temp[j] <- sum(qweibull(runif(1),0.5,4))\n            }\n            else\n            {\n                temp[j] <- sum(qpareto(runif(1),4,15))\n            }\n        }\n        S[i] <- sum(temp)\n    }\n}\n\n## E[S]\nexp(2+0.9^2/2)+3*4*gamma(1+1/0.5)+6*5\n## E[S_simulé]\nmean(S)\n\n# Ainsi, nos simulations sont bonnes. Pour le reste, c'est exactement comme au 4.2.13\n",
+    "created" : 1522793064876.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1396140040",
+    "id" : "3DA46826",
+    "lastKnownWriteTime" : 1522794302,
+    "last_content_update" : 1522794302193,
+    "path" : "~/Actuariat/Première année/Session 2/r-projects/Olivier/Intro II/CH04/4.2.14.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

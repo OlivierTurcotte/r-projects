@@ -1,0 +1,1 @@
+"0","TVaR_S <- function(k) sum(sapply(seq(3),function(i) dbinom(i,3,q)*i/b*(1-pgamma(11658.566,i+1,b))))/(1-k)"
