@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "\nv <- function(E,V){\n    (V[1]+E[1]^2)*(V[2]+E[2]^2) - prod(E)^2\n}\nvXY <- 300^2+500^2\nv(c(300,1.11),c(300^2+500^2,0.03))*10\n\n",
+    "contents" : "\nv <- function(E,V){\n    (V[1]+E[1]^2)*(V[2]+E[2]^2) - prod(E)^2\n}\nvXY <- 300^2+500^2\nv(c(300,1.11),c(300^2+500^2,0.03))*10\n\nsqrt(166560)*qnorm(0.95)\n\n",
     "created" : 1522609791769.000,
     "dirty" : true,
     "encoding" : "",
     "folds" : "",
-    "hash" : "2608337976",
+    "hash" : "2524262445",
     "id" : "E7CA10BB",
     "lastKnownWriteTime" : 8319383697102995457,
-    "last_content_update" : 1522789056395,
+    "last_content_update" : 1522855046653,
     "path" : null,
     "project_path" : null,
     "properties" : {

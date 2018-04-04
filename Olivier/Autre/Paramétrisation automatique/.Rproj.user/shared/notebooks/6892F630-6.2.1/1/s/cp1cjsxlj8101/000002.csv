@@ -1,0 +1,3 @@
+"0","Fw <- function(x) sum(p_t*pgamma(x*10,a*theta*10,b))"
+"0","VaR_W <- function(k) uniroot(function(x) Fw(x) - k, c(0,10000))$root"
+"0","TVaR_W <- function(x) sum(p_t*a*theta/b*(1-pgamma(VaR_W(x),a*theta*10+1,b*10)))/(1-x)"

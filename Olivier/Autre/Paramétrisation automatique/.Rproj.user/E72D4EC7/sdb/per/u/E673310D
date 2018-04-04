@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "## 6.3.1\nrm(list = ls())\nn <- 5\nq <- 0.3\n\nlambda <- function(k) 0.1*(k+1)\n\nFx <- function(x) sum(sapply(0:5,function(i) dbinom(i,n,q)*ppois(x,lambda(i))))\nVaR <- uniroot(function(x) Fx(x)-0.9,c(0,10))$root\nFx(VaR)## Problème! On doit incrémenter VaR de 1.\nVaR <- VaR +1\nFx(VaR)## Beaucoup mieux\n\n\n",
+    "created" : 1522846224010.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2733511814",
+    "id" : "E673310D",
+    "lastKnownWriteTime" : 8319383698888684144,
+    "last_content_update" : 1522851370700,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
