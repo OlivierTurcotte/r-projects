@@ -6,12 +6,10 @@ costFunction <- function(hypothesis,paramChar)
     ## neurones.
     ## @hypothese  :  String, cost function à minimiser
     ## @paramChar  :  Char, charactère attribué aux paramètres à trouver.
-    hypothesis <- "t1 * exp(-t1 * x)"
-    paramChar <- "t"
+    
     paramFinder <- function(hypothesis, paramChar){
         pattern = paste(paramChar,"\\d+",sep = "")
         param <- sort(unique(regmatches(hypothesis,gregexpr(pattern, hypothesis))[[1]]))## greg : Tous les matchs du pattern avec l'hypothèse.
-        
         param
     }
     param <- paramFinder(hypothesis,paramChar)
@@ -55,7 +53,7 @@ f <- function(t) {
     eval(parse(text = CF$CF_prime$t1),list(x=x, y=y, m = length(y)))
 }
 
-uniroot(function(x) f(x)-0,c(0,1))$root
-
+t <- uniroot(function(x) f(x)-0,c(0,1))$root
+curve(dexp(x,t),add =T)
 ## Essayer avec uniroot au lieu de gradient descent.
 ## Aussi, essayer avec abs()

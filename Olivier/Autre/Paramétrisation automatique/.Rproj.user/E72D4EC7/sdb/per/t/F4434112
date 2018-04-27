@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\nn <- 10000\n\nsetwd(dirname(rstudioapi::getActiveDocumentContext()$path))\nsetwd(\"./Données Denis\")\ngetwd()\n\n## Poids 15-30 ----\npoids15_30 <- as.matrix(read.csv2(\"Poids15-30.csv\",dec = \",\",header = F))\n\n## Poids 30-30 ----\npoids30_30 <- as.matrix(read.csv2(\"Poids30-30.csv\",dec = \",\",header = F))\n\n## Ecart et moyenne ----\necart <- read.csv2(\"Ecart.csv\",dec = \",\", header =F)\ncorr <- read.csv2(\"Corr.csv\",dec = \",\",header = F)\ncorr[2,1]\n## Function Risque\n\nrisque <- function(poids){\n    values <- matrix(0,ncol = 1,nrow=n)\n    for(ctr in seq(n)){\n        a <- numeric(0)\n        for(i in seq(30)){\n            for( j in seq(30)){\n                a <- c(a,poids[ctr,i]*poids[ctr,j]*ecart[[i]]*ecart[[j]]*corr[max(i,j),min(i,j)])\n            }\n        }\n        values[ctr,1] <- sum(a)\n    }\n    values\n}\n\nrisque15_30 <- risque(poids15_30)\nrisque30_30 <- risque(poids30_30)\n\nwrite.table(risque15_30,\"Risque15-30.csv\",sep=\";\", col.names=FALSE, dec = \",\")\nwrite.table(risque30_30,\"Risque30-30.csv\",sep = \";\",col.names = FALSE, dec = \",\")\n",
+    "created" : 1523889283563.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3219666361",
+    "id" : "F4434112",
+    "lastKnownWriteTime" : 1523891879,
+    "last_content_update" : 1523891879688,
+    "path" : "~/Actuariat/Première année/Session 2/Gestion du risque financier/grf-tp3/simul.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
