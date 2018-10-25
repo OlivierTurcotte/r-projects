@@ -37,3 +37,5 @@ TVaR_w(0.99)
 BVaR <- sapply(c(0.8,0.99),function(k) VaR_x(k) - VaR_w(k))
 BTVaR <- sapply(c(0.8,0.99),function(k) TVaR_x(k)-TVaR_w(k))
 
+dbinom(1,2,0.3)
+0.42*(1-0.594)+0.09*(1-0.1429)

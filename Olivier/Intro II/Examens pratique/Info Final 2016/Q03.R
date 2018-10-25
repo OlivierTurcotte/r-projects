@@ -43,8 +43,9 @@ Var2 <- EZ2 - EZ^2
 Z <- g*annuity(1:n)
 fz <- c(sapply(1:(n-1), function(i) FT_barre(i-1)-FT_barre(i)),FT_barre(n-1))
 sum(fz)
+sum(Z*fz)
+sum(Z^2*fz)-EZ^2
 
-sum(sapply(1:n,function(k) Z[k]^2*fz[k]))-EZ^2
 
 Fz <- cumsum(fz)
 # E)
